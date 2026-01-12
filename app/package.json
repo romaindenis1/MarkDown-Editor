@@ -13,8 +13,15 @@
   "license": "GPL-3.0",
   "author": "ASETML",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "electron": "^39.2.7"
+  },
+  "dependencies": {
+    "marked": "^17.0.1"
   }
 }

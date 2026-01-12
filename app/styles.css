@@ -1,0 +1,22 @@
+body {
+    background-color: #0C120C;
+}
+
+* {
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+textarea {
+    width: 90%;
+    background-color: #330036;
+    border: solid  #D81159 1px;
+    border-radius: 5px;
+    padding: 5px;
+    transition: all 1s;
+}
+
+textarea:focus {
+    border: none;
+    outline: none;
+}
