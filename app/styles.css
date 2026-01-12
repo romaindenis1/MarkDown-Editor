@@ -7,8 +7,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-textarea {
-    width: 90%;
+#editor {
+    width: 100%;
     background-color: #330036;
     border: solid  #D81159 1px;
     border-radius: 5px;
@@ -19,4 +19,17 @@ textarea {
 textarea:focus {
     border: none;
     outline: none;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    display: block;
+}
+
+section {
+    width: 50%;
+    border: solid 1px #D81159;
 }
