@@ -39,16 +39,7 @@ module.exports = {
     {
       "name": "@rabbitholesyndrome/electron-forge-maker-portable",
       config: {}
-    },
-    //MacOS
-    {
-      name: '@electron-forge/maker-dmg',
-      config: {
-        background: './assets/dmg-background.png',
-        format: 'ULFO'
-      }
     }
-
   ],
   plugins: [
     {
