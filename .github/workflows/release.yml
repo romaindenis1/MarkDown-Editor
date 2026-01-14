@@ -22,12 +22,12 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v6
         with:
-          node-version: '14' # Specify your Node.js version
+          node-version: '25' # Specify your Node.js version
 
       - name: Install dependencies
         run: npm install
@@ -42,7 +42,7 @@ jobs:
         run: ls -aR
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: app-${{ matrix.os }}
           path: path/to/your/built/app # Specify the path to your built app
@@ -52,13 +52,13 @@ jobs:
     needs: build
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v7
         with:
           name: app-linux # Adjust this based on your output name
           path: ./artifacts # You can specify a directory to download into
       
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
 
       - name: Bump version
         id: bump_version
@@ -68,7 +68,7 @@ jobs:
       
       - name: Create Release
         id: create_release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ env.new_version }}
           files: |
