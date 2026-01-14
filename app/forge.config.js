@@ -12,10 +12,6 @@ module.exports = {
       name: '@electron-forge/maker-squirrel',
       config: {},
     },
-    //All Plateform
-    {
-      name: '@electron-forge/maker-zip',
-    },
     //Debian
     {
       name: '@electron-forge/maker-deb',
