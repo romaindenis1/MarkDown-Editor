@@ -20,6 +20,7 @@ A markdown editor in electronjs
 - Synchronisation cloud (backend perso ou onedrive/google drive):
 	- Chacun peux self-hosted son serveur
 	- On renseigne l'url du serveur et ses credentials et on peut synchroniser
+- Ctrl+Z
 
 ## Objectifs
 ### Semaine 1

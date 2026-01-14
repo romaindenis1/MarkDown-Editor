@@ -1,18 +1,43 @@
+/* styles.css */
 body {
-    background-color: #0C120C;
+    font-family: 'Arial', sans-serif;
+    background-color: #0C120C; /* Dark background */
+    color: #FFFFFF; /* White text */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-* {
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#editor {
+main {
     width: 100%;
-    background-color: #330036;
-    border: solid  #D81159 1px;
-    border-radius: 5px;
-    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    height: 100%; /* Full height */
+    margin: 1%;
+    margin-left: 1%;
+}
+
+.editor, .preview {
+    width: 100%; /* Slight gap between editor and preview */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column; /* Flex direction for proper alignment */
+}
+
+textarea {
+    flex: 1; /* Allow textarea to take full height */
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1em;
+    background-color: #0C120C; /* Dark background for textarea */
+    color: #FFFFFF; /* White text color in textarea */
+    resize: none; /* Disable resizing */
+    border: dashed 1px #D81159;
     transition: all 1s;
 }
 
@@ -21,15 +46,31 @@ textarea:focus {
     outline: none;
 }
 
-main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    display: block;
+/* For the preview area */
+#preview {
+    flex: 1; /* Allow preview to take full height */
+    padding: 10px;
+    overflow-y: auto; /* Add scrolling for overflow */
+    border-radius: 8px;
 }
 
-section {
-    width: 50%;
-    border: solid 1px #D81159;
+/* Table styles */
+
+table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Combines borders for a cleaner look */
+}
+
+th, td {
+    padding: 10px; /* Padding inside cells */
+    text-align: left; /* Align text to the left */
+}
+
+th {
+    background-color: #330036; /* Dark background for table headers */
+    color: #FFFFFF; /* White text for headers */
+}
+
+tr:nth-child(even) {
+    background-color: #330036; /* Light background for even rows */
 }

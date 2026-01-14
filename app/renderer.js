@@ -21,7 +21,6 @@ document.getElementById('editor').addEventListener('keydown', function(e) {
 const showPreview = () => {
     const md = document.getElementById("editor").value
     const html = markdown.parse(md)
-    console.log(html);
     document.getElementById("preview").innerHTML = html
 }
 
