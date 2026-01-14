@@ -33,7 +33,7 @@ textarea {
     border: none;
     border-radius: 8px;
     padding: 10px;
-    font-size: 1em;
+    font-size: 1.2em;
     background-color: #0C120C; /* Dark background for textarea */
     color: #FFFFFF; /* White text color in textarea */
     resize: none; /* Disable resizing */

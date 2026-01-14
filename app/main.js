@@ -1,12 +1,35 @@
-const { app, BrowserWindow, ipcMain, screen  } = require('electron')
+const { app, BrowserWindow, ipcMain, screen, Tray  } = require('electron')
+const { Menu, dialog } = require('electron/main')
 const path = require('node:path')
-const { Menu } = require('electron/main')
 const { markdownModule } = require("./src/markdown.js")
 const { fileModule } = require("./src/file.js")
+const fs = require("fs")
 
-//Menu
+let win;
 const template = [
-  { role: 'fileMenu' },
+  { role: 'fileMenu',
+    submenu: [
+      {
+        label: 'Open file',
+        click: async () => {
+          const result = await dialog.showOpenDialog({ properties: ['openFile'] });
+          console.log("RESULT: " + result)
+          if (result.canceled || result.filePaths.length === 0) return;
+
+          const text = fs.readFileSync(result.filePaths[0], 'utf8');
+
+          console.log("TEXT: " + text)
+          // Send the file content to the renderer process
+          win.webContents.send('file-opened', text);
+          console.log("SENT")
+        }
+      },
+      {
+        label: "Exit",
+        role: "quit"
+      }
+    ]
+   },
   { role: 'editMenu' },
   { role: 'viewMenu' },
   { role: 'windowMenu' },
@@ -16,24 +39,19 @@ const template = [
       {
         label: 'Learn More',
         click: async () => {
-          const { shell, ipcRenderer } = require('electron')
-          const fs = require("node:fs")
-          const { dialog } = require('electron')
-          //await shell.openExternal('https://github.com/ASETML/MarkDown-Editor')
-          //await console.log(ipcRenderer.sendSync("file:open", "../../README.md"))
-          console.log(fs.readFileSync((await dialog.showOpenDialog({ properties: ['openFile'] })).filePaths[0], 'utf8'))
+          const { shell } = require('electron')
+          await shell.openExternal('https://github.com/ASETML/MarkDown-Editor')
         }
       }
     ]
   }
 ]
 
-const menu = Menu.buildFromTemplate(template)
-Menu.setApplicationMenu(menu)
-
 //Création de la fenêtre
 const createWindow = () => {
-  const win = new BrowserWindow({
+  const tray = new Tray("client/images/MarkDownEditor-logo.png")
+  win = new BrowserWindow({
+    icon: "client/images/MarkDownEditor-logo.png",
     show: false,
     width: screen.getPrimaryDisplay().workAreaSize.width,
     height: screen.getPrimaryDisplay().workAreaSize.height,
@@ -44,7 +62,11 @@ const createWindow = () => {
 
   win.loadFile('client/index.html')
   win.maximize();
-  win.show();
+  win.once('ready-to-show', () => {
+        win.show();  // Show window only after it's ready
+  });
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 }
 
 //Démarrer l'app
